@@ -1,0 +1,54 @@
+print("Welcome to the Personal Expense Tracker!")
+print("Our Features:-")
+print("1. Add your income")
+print("2. Add expenses")
+print("3. View expense summary")
+print("4. View balance left")
+print("5. Add Budget Warning")
+print("----------------------------------------------------------------------")
+
+expenses = {
+        "category": [],
+        "date" : [],
+        "amount" : []
+    }
+
+f = int(input("Enter which feature you want to use (e.g. if you want to perfrom feature 1, enter 1): "))
+
+if f == 1:
+    income = float(input("Enter your total income for the month: "))
+    print("---------------------------------------------------------------------")
+elif f == 2:
+
+    def add_expense(date_new, category_new, amount_new):
+        expenses["category"].append(category_new)
+        expenses["date"].append(date_new)
+        expenses["amount"].append(amount_new)
+        return expenses
+
+    n = int(input("Enter the number of expenses you want to add: "))
+    for i in range(n):
+        date_new = input("Enter the date of the expense (YYYY-MM-DD): ")
+        category_new = input("Enter the category of the expense: ")
+        amount_new = float(input("Enter the amount of the expense: "))
+        print("---------------------------------------------------------------------")
+        add_expense(date_new, category_new, amount_new)
+
+elif f == 3:
+    for i in range(len(expenses["category"])):
+        print(f"Date: {expenses["date"][i]}, Category: {expenses["category"][i]}, Amount: Rs.{expenses["amount"][i]}")
+        print("---------------------------------------------------------------------")
+elif f == 4:
+    print(f"Balance left: Rs.{income-sum(expenses["amount"])}")
+    print("---------------------------------------------------------------------")
+
+elif f == 5:
+    budget_limit = float(input("Enter your Budget Limit = Rs. "))
+    if budget_limit >= sum(expenses["amount"]):
+        print("You crossed you budget limit")
+    elif 0<= sum(expenses["amount"]) <= budget_limit:
+        print("You are under your Budget")
+    else:
+        print("invalid input")
+else:
+    print("invalid input")
